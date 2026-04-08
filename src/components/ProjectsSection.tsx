@@ -4,55 +4,55 @@ import { Button } from '@/components/ui/button';
 
 const projects = [
   {
-    title: 'E-Commerce Platform',
+    title: 'AI/Machine Learning',
     description: 'Platform e-commerce modern dengan fitur lengkap termasuk payment gateway, inventory management, dan analytics dashboard.',
-    tags: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
-    image: '🛒',
+    tags: ['AI Learning', 'AI', 'AI Machine',],
+    image: '🤖',
     color: 'from-blue-500/20 to-cyan-500/20',
     github: '#',
-    demo: '#',
+    youtube: '#',
   },
   {
-    title: 'Learning Management System',
+    title: 'Literacy',
     description: 'Platform pembelajaran online dengan video streaming, quiz interaktif, dan progress tracking.',
-    tags: ['Next.js', 'TypeScript', 'MongoDB', 'WebRTC'],
-    image: '📚',
+    tags: ['Literasi digital', 'Sosial Media', 'Book',],
+    image: '📖',
     color: 'from-purple-500/20 to-pink-500/20',
     github: '#',
-    demo: '#',
+    youtube: '#',
   },
   {
-    title: 'Social Media Dashboard',
+    title: 'Motivation',
     description: 'Dashboard analytics untuk social media dengan real-time data visualization dan reporting.',
-    tags: ['React', 'D3.js', 'Firebase', 'Tailwind'],
-    image: '📊',
+    tags: ['Kesehatan Mental', 'Pengembangan Diri', 'tips',],
+    image: '😌',
     color: 'from-orange-500/20 to-red-500/20',
     github: '#',
-    demo: '#',
+    youtube: '#',
   },
   {
-    title: 'AI Content Generator',
+    title: 'Smart To-Do List',
     description: 'Tool untuk generate konten menggunakan AI dengan integrasi berbagai model language.',
-    tags: ['Python', 'FastAPI', 'OpenAI', 'React'],
-    image: '🤖',
+    tags: ['Manage', 'consistency', 'List',],
+    image: '📝',
     color: 'from-green-500/20 to-teal-500/20',
     github: '#',
-    demo: '#',
+    demo: "#"
   },
   {
-    title: 'Video Editing Tutorial',
+    title: 'Tips & Tricks Student',
     description: 'Seri tutorial video editing dengan 100+ episode dan 10k+ subscribers.',
-    tags: ['Premiere Pro', 'After Effects', 'YouTube'],
+    tags: ['Learning Video', 'Productifity', 'YouTube'],
     image: '🎬',
     color: 'from-red-500/20 to-orange-500/20',
     isContent: true,
     youtube: '#',
   },
   {
-    title: 'Coding Tips & Tricks',
+    title: 'Social Media For Student',
     description: 'Konten tips programming dan best practices untuk developer Indonesia.',
     tags: ['Instagram', 'TikTok', 'YouTube Shorts'],
-    image: '💡',
+    image: '👩‍💻',
     color: 'from-cyan-500/20 to-blue-500/20',
     isContent: true,
     youtube: '#',
@@ -121,12 +121,12 @@ export default function ProjectsSection() {
                   
                   <div className="flex gap-2 pt-2">
                     {project.github && (
-                      <Button variant="outline" size="sm" className="rounded-full" asChild>
-                        <a href={project.github}>
-                          <Github className="h-4 w-4 mr-1" />
-                          Code
-                        </a>
-                      </Button>
+                      <Button variant="outline" size="sm" className="rounded-full mt-2" asChild>
+  <a href={project.demo} target="_blank" rel="noopener noreferrer">
+    <ExternalLink className="h-4 w-4 mr-1" />
+    Demo
+  </a>
+</Button>
                     )}
                     {project.demo && (
                       <Button size="sm" className="rounded-full" asChild>

@@ -1,14 +1,15 @@
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Youtube, Instagram, Heart } from 'lucide-react';
 
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: Github, href: '#', label: 'GitHub' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Youtube, href: '#', label: 'YouTube' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
+    { icon: Github, href: '#', label: 'https://github.com/Falishas177' },
+    // { icon: Linkedin, href: '#', label: 'LinkedIn' },
+    // { icon: Youtube, href: '#', label: 'YouTube' },
+    { icon: Instagram, href: '#', label: 'https://www.instagram.com/' },
   ];
 
   return (
@@ -21,9 +22,9 @@ export default function Footer() {
             viewport={{ once: true }}
             className="flex items-center gap-2 text-muted-foreground"
           >
-            <span>© {currentYear} Made with</span>
-            <Heart className="h-4 w-4 text-destructive fill-destructive" />
-            <span>by Developer</span>
+            <span>© {currentYear} Made</span>
+            {/* <Heart className="h-4 w-4 text-destructive fill-destructive" />  */}
+            <span>by Falishas</span>
           </motion.div>
 
           <motion.div
@@ -36,6 +37,8 @@ export default function Footer() {
               <a
                 key={social.label}
                 href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2 rounded-full hover:bg-muted transition-colors text-muted-foreground hover:text-foreground"
                 aria-label={social.label}
               >
