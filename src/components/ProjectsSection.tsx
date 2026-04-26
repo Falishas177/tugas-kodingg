@@ -1,13 +1,16 @@
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Play } from 'lucide-react';
+import { Github, Play, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
+import { useCallback } from 'react';
 
 const projects = [
   {
     title: 'AI/Machine Learning',
     description: 'Platform e-commerce modern dengan fitur lengkap termasuk payment gateway, inventory management, dan analytics dashboard.',
-    tags: ['AI Learning', 'AI', 'AI Machine',],
-    image: '🤖',
+    tags: ['AI Learning', 'AI', 'AI Machine'],
+    images: ['🤖', '👾', '⚙️'], 
     color: 'from-blue-500/20 to-cyan-500/20',
     github: '#',
     youtube: '#',
@@ -15,8 +18,8 @@ const projects = [
   {
     title: 'Literacy',
     description: 'Platform pembelajaran online dengan video streaming, quiz interaktif, dan progress tracking.',
-    tags: ['Literasi digital', 'Sosial Media', 'Book',],
-    image: '📖',
+    tags: ['Literasi digital', 'Sosial Media', 'Book'],
+    images: ['📖', '👩‍💻', '📚'],
     color: 'from-purple-500/20 to-pink-500/20',
     github: '#',
     youtube: '#',
@@ -24,40 +27,54 @@ const projects = [
   {
     title: 'Motivation',
     description: 'Dashboard analytics untuk social media dengan real-time data visualization dan reporting.',
-    tags: ['Kesehatan Mental', 'Pengembangan Diri', 'tips',],
-    image: '😌',
+    tags: ['Kesehatan Mental', 'Pengembangan Diri', 'tips'],
+    images: ['😌', '🕊️', '💡'],
     color: 'from-orange-500/20 to-red-500/20',
     github: '#',
     youtube: '#',
   },
-  {
-    title: 'Smart To-Do List',
-    description: 'Tool untuk generate konten menggunakan AI dengan integrasi berbagai model language.',
-    tags: ['Manage', 'consistency', 'List',],
-    image: '📝',
-    color: 'from-green-500/20 to-teal-500/20',
-    github: '#',
-    demo: "#"
-  },
-  {
-    title: 'Tips & Tricks Student',
-    description: 'Seri tutorial video editing dengan 100+ episode dan 10k+ subscribers.',
-    tags: ['Learning Video', 'Productifity', 'YouTube'],
-    image: '🎬',
-    color: 'from-red-500/20 to-orange-500/20',
-    isContent: true,
-    youtube: '#',
-  },
-  {
-    title: 'Social Media For Student',
-    description: 'Konten tips programming dan best practices untuk developer Indonesia.',
-    tags: ['Instagram', 'TikTok', 'YouTube Shorts'],
-    image: '👩‍💻',
-    color: 'from-cyan-500/20 to-blue-500/20',
-    isContent: true,
-    youtube: '#',
-  },
 ];
+
+const ProjectImageCarousel = ({ images, color }: { images: string[], color: string }) => {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: 3000 })]);  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  return (
+    <div className="relative group/carousel overflow-hidden rounded-xl mb-4">
+      {/* Viewport Embla */}
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex">
+          {images.map((img, index) => (
+            <div 
+              key={index} 
+              className={`flex-[0_0_100%] aspect-video flex items-center justify-center bg-gradient-to-br ${color} text-6xl select-none`}
+            >
+              {img}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Navigasi Manual (Hanya muncul saat di-hover) */}
+      <button 
+        onClick={scrollPrev}
+        className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 p-1 rounded-full opacity-0 group-hover/carousel:opacity-100 transition-opacity"
+      >
+        <ChevronLeft className="h-5 w-5 text-white" />
+      </button>
+      <button 
+        onClick={scrollNext}
+        className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 p-1 rounded-full opacity-0 group-hover/carousel:opacity-100 transition-opacity"
+      >
+        <ChevronRight className="h-5 w-5 text-white" />
+      </button>
+    </div>
+  );
+};
 
 export default function ProjectsSection() {
   return (
@@ -72,7 +89,7 @@ export default function ProjectsSection() {
         >
           <span className="text-primary font-medium mb-2 block">Portfolio</span>
           <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
-            Projects &amp; Karya
+            Projects & Karya
           </h2>
           <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
         </motion.div>
@@ -88,21 +105,14 @@ export default function ProjectsSection() {
               className="group"
             >
               <div className="h-full p-6 glass rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-2">
-                <div className={`aspect-video rounded-xl mb-4 flex items-center justify-center bg-gradient-to-br ${project.color}`}>
-                  <span className="text-6xl">{project.image}</span>
-                </div>
+                
+                {/* Carousel Gambar di dalam Card */}
+                <ProjectImageCarousel images={project.images} color={project.color} />
                 
                 <div className="space-y-3">
-                  <div className="flex items-center gap-2">
-                    {project.isContent && (
-                      <span className="px-2 py-0.5 text-xs rounded-full bg-primary/10 text-primary font-medium">
-                        Content
-                      </span>
-                    )}
-                    <h3 className="font-display text-lg font-bold group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
-                  </div>
+                  <h3 className="font-display text-lg font-bold group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h3>
                   
                   <p className="text-sm text-muted-foreground line-clamp-2">
                     {project.description}
@@ -120,25 +130,17 @@ export default function ProjectsSection() {
                   </div>
                   
                   <div className="flex gap-2 pt-2">
-                    {project.github && (
+                    {project.github && project.github !== '#' && (
                       <Button variant="outline" size="sm" className="rounded-full mt-2" asChild>
-  <a href={project.demo} target="_blank" rel="noopener noreferrer">
-    <ExternalLink className="h-4 w-4 mr-1" />
-    Demo
-  </a>
-</Button>
-                    )}
-                    {project.demo && (
-                      <Button size="sm" className="rounded-full" asChild>
-                        <a href={project.demo}>
-                          <ExternalLink className="h-4 w-4 mr-1" />
-                          Demo
+                        <a href={project.github} target="_blank" rel="noopener noreferrer">
+                          <Github className="h-4 w-4 mr-1" />
+                          Code
                         </a>
                       </Button>
                     )}
-                    {project.youtube && (
+                    {project.youtube && project.youtube !== '#' && (
                       <Button size="sm" className="rounded-full" asChild>
-                        <a href={project.youtube}>
+                        <a href={project.youtube} target="_blank" rel="noopener noreferrer">
                           <Play className="h-4 w-4 mr-1" />
                           Watch
                         </a>
