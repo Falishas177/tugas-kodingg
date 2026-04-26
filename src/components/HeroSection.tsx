@@ -45,7 +45,7 @@ export default function HeroSection() {
                 transition={{ duration: 5, repeat: Infinity, delay: 1 }}
                 className="absolute -bottom-4 -left-4 text-4xl"
               >
-                🌞
+                🌟🌞
               </motion.div>
             </div>
           </motion.div>
