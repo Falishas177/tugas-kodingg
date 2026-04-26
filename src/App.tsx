@@ -29,7 +29,7 @@ function App() {
   // --- LOADING SCREEN DENGAN LOTTIE ---
   if (loading) {
     return (
-      <div className="h-screen w-full flex flex-col items-center justify-center bg-white dark:bg-slate-900 transition-colors duration-300">
+      <div className="h-screen w-full flex flex-col items-center justify-center bg-yellow-200 dark:bg-slate-900 transition-colors duration-300">
         <div className="w-64 h-64 md:w-80 md:h-80">
           <DotLottiePlayer
             src="https://lottie.host/6a8e51b1-4eaa-4bac-bd6d-7f22317b4e94/u5XLk74ox4.lottie"
@@ -42,7 +42,6 @@ function App() {
           animate={{ opacity: 1 }}
           className="text-xl md:text-2xl font-bold text-black dark:text-white mt-4 font-display tracking-widest"
         >
-          PREPARING PORTOFOLIO...
         </motion.h1>
       </div>
     );
