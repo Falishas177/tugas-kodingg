@@ -86,7 +86,7 @@ export default function HeroSection() {
 
       <motion.button
         onClick={scrollToAbout}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 p-3 rounded-full bg-white/50 animate-bounce"
+        className="absolute bottom-8 left-1/2 -translate-x-[20px] p-3 rounded-full bg-white/50 animate-bounce"
       >
         <ArrowDown className="h-5 w-5 text-yellow-600" />
       </motion.button>

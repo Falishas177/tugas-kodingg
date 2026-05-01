@@ -1,16 +1,16 @@
 import { motion } from 'framer-motion';
-import { BookCheck, BookOpenIcon, Code2, MedalIcon, PenLineIcon, Rocket,} from 'lucide-react';
+import { BookOpenIcon, MapPin, MapIcon, Palette, Quote } from 'lucide-react';
 
 export default function AboutSection() {
   const stats = [
-    { icon: BookOpenIcon, value: '50+', label: 'Tugas Selesai' },
-    { icon: MedalIcon, value: '7+', label: 'Prestasi Akademik' },
-    { icon: PenLineIcon, value: '50+', label: 'Tinta Pulpen' },
-    { icon: Rocket, value: '9+', label: 'Jejak Rekam Akademik' },
+    { icon: BookOpenIcon, value: 'X-4', label: 'Kelas di MAN 1' },
+    { icon: MapPin, value: 'Aceh', label: 'Tempat Tinggal' },
+    { icon: MapIcon, value: 'Eksplor', label: 'Suka Jalan-Jalan' },
+    { icon: Palette, value: 'Art', label: 'Hobi Menggambar' }, // Cita-cita diganti Hobi Menggambar
   ];
 
   return (
-    <section id="about" className="py-20 md:py-32 bg-muted/30">
+    <section id="about" className="py-20 md:py-32 bg-[#FEF9C3]"> 
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -19,11 +19,11 @@ export default function AboutSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-primary font-medium mb-2 block">Tentang Saya</span>
-          <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
-            Mengenal Lebih Dekat
+          <span className="text-[#EAB308] font-bold mb-2 block tracking-widest uppercase text-sm">Tentang Saya</span>
+          <h2 className="font-display text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-[#EAB308] to-[#854D0E] bg-clip-text text-transparent">
+            Semangat Dalam Belajar
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
+          <div className="w-16 h-1.5 bg-[#EAB308] mx-auto rounded-full" />
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
@@ -33,15 +33,16 @@ export default function AboutSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="relative">
-              <div className="aspect-square rounded-2xl overflow-hidden glass shadow-card">
-                <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                  <span className="text-8xl">👩‍💻</span>
+            <div className="relative group">
+              <div className="aspect-square rounded-[2.5rem] overflow-hidden border-2 border-[#FEF08A] bg-white shadow-xl group-hover:rotate-2 transition-transform duration-500">
+                <div className="w-full h-full bg-gradient-to-br from-[#FEF9C3] to-[#FDE047] flex items-center justify-center">
+                  <span className="text-9xl">🌻</span>
                 </div>
               </div>
-              <div className="absolute -bottom-6 -right-6 p-4 glass rounded-xl shadow-card">
-                <p className="font-display font-bold text-2xl text-gradient">9+ Tahun</p>
-                <p className="text-sm text-muted-foreground">Rekam jejak akademik</p>
+              
+              <div className="absolute -bottom-6 -right-6 p-6 bg-white/90 backdrop-blur-md border border-[#FEF08A] rounded-3xl shadow-lg text-center">
+                <p className="font-display font-bold text-3xl text-[#EAB308]">2010</p>
+                <p className="text-xs font-bold text-[#422006]/60 uppercase tracking-tighter text-center">Tahun Lahir</p>
               </div>
             </div>
           </motion.div>
@@ -53,19 +54,21 @@ export default function AboutSection() {
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            <h3 className="font-display text-2xl md:text-3xl font-bold">
-              Profil singkat
-            </h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Perkenalkan nama saya Falisha Shamim Izza, saya lahir di Bireun pada tanggal 17 Juli 2010, 
-              saat ini saya berdomisili di Lueng Bata tepatnya di Kota Banda Aceh, dan saya sedang 
-              menempuh jenjang pendidikan di MAN 1 Model Banda Aceh.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              Saya percaya bahwa berbagi ilmu adalah cara terbaik untuk terus belajar dan berkembang.
-              Bagi saya, belajar koding itu menantang tapi seru, dan saya adalh pribadi yang santai 
-              tapi tetap bertanggung jawab untuk menyelesaikan setiap tugas tetap waktu.
-            </p>
+            <div className="space-y-4">
+              <h3 className="font-display text-2xl md:text-3xl font-bold text-[#422006]">
+                Mimpi Besar & Semangat Belajar
+              </h3>
+              <p className="text-[#422006]/80 leading-relaxed">
+                Haii, aku <strong>Falisha Shamim Izza</strong>. Lahir pada 17 Juli 2010 dan saat ini bersekolah di MAN 1 Banda Aceh, kelas 10. 
+                Aku adalah tipe orang yang suka menjelajah—jalan-jalan bukan sekadar hobi, tapi caraku menemukan inspirasi dan pengalaman baru.
+              </p>
+            </div>
+
+            <div className="p-6 bg-white border-l-4 border-[#EAB308] rounded-r-2xl shadow-sm italic text-[#422006] relative">
+              <Quote className="absolute top-2 right-2 text-[#EAB308]/20 h-10 w-10" />
+              "Dengan semangat belajar dan mimpi yang terus tumbuh, aku ingin menjadi seorang pengusaha sukses yang bisa menciptakan peluang dan membawa perubahan." 🌞
+            </div>
+
             <div className="grid grid-cols-2 gap-4 pt-4">
               {stats.map((stat, index) => (
                 <motion.div
@@ -74,11 +77,11 @@ export default function AboutSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="p-4 glass rounded-xl text-center hover:shadow-card-hover transition-shadow"
+                  className="p-4 bg-white border border-[#FEF08A] rounded-2xl text-center hover:shadow-md transition-all duration-300 group"
                 >
-                  <stat.icon className="h-6 w-6 text-primary mx-auto mb-2" />
-                  <p className="font-display text-2xl font-bold">{stat.value}</p>
-                  <p className="text-sm text-muted-foreground">{stat.label}</p>
+                  <stat.icon className="h-6 w-6 text-[#EAB308] mx-auto mb-2 group-hover:scale-110 transition-transform" />
+                  <p className="font-display text-xl font-bold text-[#422006]">{stat.value}</p>
+                  <p className="text-[10px] uppercase font-bold text-[#422006]/60 tracking-wider">{stat.label}</p>
                 </motion.div>
               ))}
             </div>

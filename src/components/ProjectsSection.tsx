@@ -5,60 +5,48 @@ import { Button } from '@/components/ui/button';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 
-// Data Projects
+// Data Projects - Tetap dengan data Falisha
 const projects = [
   {
     title: 'AI/Machine Learning',
-    description: 'Platform e-commerce modern dengan fitur lengkap termasuk payment gateway, inventory management, dan analytics dashboard.',
+    description: 'Eksplorasi teknologi masa depan melalui kecerdasan buatan untuk solusi cerdas.',
     tags: ['AI Learning', 'AI', 'AI Machine'],
     images: ['🤖', '👾', '⚙️'], 
-    color: 'from-blue-500/20 to-cyan-500/20',
+    color: 'from-[#FDE047]/30 to-[#EAB308]/30', // Gradasi Kuning
     github: '#',
     youtube: '#',
   },
   {
     title: 'Literacy',
-    description: 'Platform pembelajaran online dengan video streaming, quiz interaktif, dan progress tracking.',
+    description: 'Meningkatkan minat baca dan wawasan melalui platform digital yang interaktif.',
     tags: ['Literasi digital', 'Sosial Media', 'Book'],
     images: ['📖', '👩‍💻', '📚'],
-    color: 'from-purple-500/20 to-pink-500/20',
+    color: 'from-[#FEF08A]/40 to-[#FDE047]/40', // Gradasi Kuning
     github: '#',
     youtube: '#',
   },
   {
     title: 'Motivation',
-    description: 'Dashboard analytics untuk social media dengan real-time data visualization dan reporting.',
+    description: 'Berbagi inspirasi dan tips pengembangan diri untuk hidup yang lebih positif.',
     tags: ['Kesehatan Mental', 'Pengembangan Diri', 'tips'],
     images: ['😌', '🕊️', '💡'],
-    color: 'from-orange-500/20 to-red-500/20',
+    color: 'from-[#EAB308]/20 to-[#FDE047]/20', // Gradasi Kuning
     github: '#',
     youtube: '#',
   },
 ];
 
-// Komponen Carousel per Card
 const ProjectImageCarousel = ({ images, color }: { images: string[], color: string }) => {
-  // Konfigurasi Embla: loop true (infinite) dan autoplay 3000ms (3 detik)
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { 
-      loop: true, 
-      align: 'start',
-      containScroll: 'trimSnaps' 
-    }, 
+    { loop: true, align: 'start', containScroll: 'trimSnaps' }, 
     [Autoplay({ delay: 3000, stopOnInteraction: false })]
   );
 
-  const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
-  }, [emblaApi]);
-
-  const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
-  }, [emblaApi]);
+  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
 
   return (
-    <div className="relative group/carousel overflow-hidden rounded-xl mb-4 touch-pan-y">
-      {/* Viewport Embla (Mendukung Drag secara default) */}
+    <div className="relative group/carousel overflow-hidden rounded-xl mb-4 touch-pan-y border border-[#FEF08A]">
       <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
         <div className="flex">
           {images.map((img, index) => (
@@ -72,44 +60,22 @@ const ProjectImageCarousel = ({ images, color }: { images: string[], color: stri
         </div>
       </div>
 
-      {/* Navigasi Manual (Kiri) */}
-      <button 
-        onClick={(e) => {
-          e.preventDefault();
-          scrollPrev();
-        }}
-        className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-black/30 hover:bg-black/50 backdrop-blur-sm p-2 rounded-full opacity-0 group-hover/carousel:opacity-100 transition-all duration-300"
-        aria-label="Previous slide"
-      >
-        <ChevronLeft className="h-5 w-5 text-white" />
+      <button onClick={(e) => { e.preventDefault(); scrollPrev(); }} className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/50 hover:bg-[#FDE047] backdrop-blur-sm p-1.5 rounded-full opacity-0 group-hover/carousel:opacity-100 transition-all duration-300">
+        <ChevronLeft className="h-4 w-4 text-[#422006]" />
       </button>
 
-      {/* Navigasi Manual (Kanan) */}
-      <button 
-        onClick={(e) => {
-          e.preventDefault();
-          scrollNext();
-        }}
-        className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-black/30 hover:bg-black/50 backdrop-blur-sm p-2 rounded-full opacity-0 group-hover/carousel:opacity-100 transition-all duration-300"
-        aria-label="Next slide"
-      >
-        <ChevronRight className="h-5 w-5 text-white" />
+      <button onClick={(e) => { e.preventDefault(); scrollNext(); }} className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/50 hover:bg-[#FDE047] backdrop-blur-sm p-1.5 rounded-full opacity-0 group-hover/carousel:opacity-100 transition-all duration-300">
+        <ChevronRight className="h-4 w-4 text-[#422006]" />
       </button>
-
-      {/* Indikator Dots (Opsional untuk visual) */}
-      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
-        {images.map((_, i) => (
-          <div key={i} className="w-1.5 h-1.5 rounded-full bg-white/40" />
-        ))}
-      </div>
     </div>
   );
 };
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="py-20 md:py-32 bg-muted/30">
+    <section id="projects" className="py-20 md:py-32 bg-[#FEF9C3]"> {/* BG Kuning Soft */}
       <div className="container mx-auto px-4">
+        
         {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -118,15 +84,15 @@ export default function ProjectsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-primary font-medium mb-2 block">Portfolio</span>
-          <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
+          <span className="text-[#EAB308] font-bold mb-2 block tracking-widest uppercase text-sm">Portfolio</span>
+          <h2 className="font-display text-3xl md:text-5xl font-bold mb-4 text-[#422006]">
             Projects & Karya
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
+          <div className="w-20 h-1.5 bg-[#EAB308] mx-auto rounded-full" />
         </motion.div>
 
         {/* Grid Projects */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
@@ -134,27 +100,29 @@ export default function ProjectsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group"
+              className="relative group"
             >
-              <div className="h-full p-6 glass rounded-2xl border border-white/10 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 flex flex-col bg-white/5 backdrop-blur-md">
+              {/* EFEK SINAR KUNING (GLOW) DI BELAKANG KOTAK */}
+              <div className="absolute -inset-1 bg-[#FDE047] rounded-3xl blur opacity-0 group-hover:opacity-40 transition duration-500"></div>
+              
+              <div className="relative h-full p-6 bg-white border border-[#FEF08A] rounded-3xl shadow-sm group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2 flex flex-col">
                 
-                {/* Carousel Gambar */}
                 <ProjectImageCarousel images={project.images} color={project.color} />
                 
-                <div className="space-y-3 flex-grow">
-                  <h3 className="font-display text-lg font-bold group-hover:text-primary transition-colors">
+                <div className="space-y-3 flex-grow text-center lg:text-left">
+                  <h3 className="font-display text-xl font-bold text-[#422006] group-hover:text-[#EAB308] transition-colors">
                     {project.title}
                   </h3>
                   
-                  <p className="text-sm text-muted-foreground line-clamp-2">
+                  <p className="text-sm text-[#422006]/70 line-clamp-3 leading-relaxed">
                     {project.description}
                   </p>
                   
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 pt-2 justify-center lg:justify-start">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2 py-1 text-[10px] uppercase tracking-wider font-semibold rounded-md bg-primary/10 text-primary border border-primary/20"
+                        className="px-3 py-1 text-[10px] uppercase tracking-widest font-bold rounded-full bg-[#FEF9C3] text-[#854D0E] border border-[#FEF08A]"
                       >
                         {tag}
                       </span>
@@ -162,24 +130,20 @@ export default function ProjectsSection() {
                   </div>
                 </div>
 
-                {/* Action Buttons */}
+                {/* Action Buttons - Kuning Style */}
                 <div className="flex gap-3 pt-6">
-                  {project.github && project.github !== '#' && (
-                    <Button variant="outline" size="sm" className="flex-1 rounded-full border-primary/20 hover:bg-primary/10" asChild>
-                      <a href={project.github} target="_blank" rel="noopener noreferrer">
-                        <Github className="h-4 w-4 mr-2" />
+                    <Button variant="outline" size="sm" className="flex-1 rounded-full border-[#FEF08A] hover:bg-[#FEF9C3] text-[#422006]" asChild>
+                      <a href={project.github}>
+                        <Github className="h-4 w-4 mr-2 text-[#EAB308]" />
                         Code
                       </a>
                     </Button>
-                  )}
-                  {project.youtube && project.youtube !== '#' && (
-                    <Button size="sm" className="flex-1 rounded-full shadow-md shadow-primary/20" asChild>
-                      <a href={project.youtube} target="_blank" rel="noopener noreferrer">
+                    <Button size="sm" className="flex-1 rounded-full bg-[#EAB308] hover:bg-[#FDE047] text-white shadow-md shadow-[#EAB308]/20" asChild>
+                      <a href={project.youtube}>
                         <Play className="h-4 w-4 mr-2" />
                         Watch
                       </a>
                     </Button>
-                  )}
                 </div>
               </div>
             </motion.div>

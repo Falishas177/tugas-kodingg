@@ -30,7 +30,7 @@ const contactInfo = [
   },
   {
     icon: MapPin,
-    label: 'Banda Aceh, Indonesia',
+    label: 'Lokasi',
     value: 'Banda Aceh, Indonesia',
     href: '#',
   },
@@ -99,8 +99,9 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-32">
+    <section id="contact" className="py-20 md:py-32 bg-[#FEF9C3]">
       <div className="container mx-auto px-4">
+        {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -108,11 +109,11 @@ export default function ContactSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-primary font-medium mb-2 block">Kontak</span>
-          <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
+          <span className="text-[#EAB308] font-bold mb-2 block tracking-widest uppercase text-sm">Kontak</span>
+          <h2 className="font-display text-3xl md:text-5xl font-bold mb-4 text-[#422006]">
             Hubungi Saya
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
+          <div className="w-20 h-1.5 bg-[#EAB308] mx-auto rounded-full" />
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
@@ -125,10 +126,10 @@ export default function ContactSection() {
             className="space-y-8"
           >
             <div>
-              <h3 className="font-display text-2xl font-bold mb-4">
+              <h3 className="font-display text-2xl font-bold mb-4 text-[#422006]">
                 Mari Berkolaborasi!
               </h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-[#422006]/70 leading-relaxed">
                 Punya project menarik atau ingin berkolaborasi? Jangan ragu untuk 
                 menghubungi saya. Saya selalu terbuka untuk diskusi tentang project 
                 baru, ide kreatif, atau kesempatan untuk menjadi bagian dari visi Anda.
@@ -144,14 +145,19 @@ export default function ContactSection() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="flex items-center gap-4 p-4 glass rounded-xl hover:shadow-card-hover transition-all group"
+                  className="relative group block"
                 >
-                  <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                    <info.icon className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">{info.label}</p>
-                    <p className="font-medium">{info.value}</p>
+                  {/* Efek Sinar di Kartu Info */}
+                  <div className="absolute -inset-0.5 bg-[#FDE047] rounded-xl blur opacity-0 group-hover:opacity-30 transition duration-300"></div>
+                  
+                  <div className="relative flex items-center gap-4 p-4 bg-white border border-[#FEF08A] rounded-xl group-hover:shadow-md transition-all">
+                    <div className="p-3 rounded-lg bg-[#FEF9C3] group-hover:bg-[#FDE047] transition-colors">
+                      <info.icon className="h-5 w-5 text-[#EAB308]" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-[#EAB308] uppercase tracking-wider">{info.label}</p>
+                      <p className="font-medium text-[#422006]">{info.value}</p>
+                    </div>
                   </div>
                 </motion.a>
               ))}
@@ -164,29 +170,27 @@ export default function ContactSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="relative group"
           >
-            <form onSubmit={handleSubmit} className="space-y-6 p-6 glass rounded-2xl shadow-card">
+            {/* Efek Sinar Kuning di Belakang Form */}
+            <div className="absolute -inset-1.5 bg-[#FDE047] rounded-[2rem] blur-lg opacity-0 group-hover:opacity-40 transition duration-500"></div>
+            
+            <form onSubmit={handleSubmit} className="relative space-y-6 p-8 bg-white border border-[#FEF08A] rounded-3xl shadow-sm">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium">
-                    Nama
-                  </label>
+                  <label htmlFor="name" className="text-sm font-bold text-[#422006]">Nama</label>
                   <Input
                     id="name"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Nama Anda"
-                    className={errors.name ? 'border-destructive' : ''}
+                    className={`rounded-xl border-[#FEF08A] focus:ring-[#EAB308] ${errors.name ? 'border-destructive' : ''}`}
                   />
-                  {errors.name && (
-                    <p className="text-xs text-destructive">{errors.name}</p>
-                  )}
+                  {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium">
-                    Email
-                  </label>
+                  <label htmlFor="email" className="text-sm font-bold text-[#422006]">Email</label>
                   <Input
                     id="email"
                     name="email"
@@ -194,35 +198,27 @@ export default function ContactSection() {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="email@example.com"
-                    className={errors.email ? 'border-destructive' : ''}
+                    className={`rounded-xl border-[#FEF08A] focus:ring-[#EAB308] ${errors.email ? 'border-destructive' : ''}`}
                   />
-                  {errors.email && (
-                    <p className="text-xs text-destructive">{errors.email}</p>
-                  )}
+                  {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="subject" className="text-sm font-medium">
-                  Subjek
-                </label>
+                <label htmlFor="subject" className="text-sm font-bold text-[#422006]">Subjek</label>
                 <Input
                   id="subject"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
                   placeholder="Subjek pesan"
-                  className={errors.subject ? 'border-destructive' : ''}
+                  className={`rounded-xl border-[#FEF08A] focus:ring-[#EAB308] ${errors.subject ? 'border-destructive' : ''}`}
                 />
-                {errors.subject && (
-                  <p className="text-xs text-destructive">{errors.subject}</p>
-                )}
+                {errors.subject && <p className="text-xs text-destructive">{errors.subject}</p>}
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium">
-                  Pesan
-                </label>
+                <label htmlFor="message" className="text-sm font-bold text-[#422006]">Pesan</label>
                 <Textarea
                   id="message"
                   name="message"
@@ -230,17 +226,15 @@ export default function ContactSection() {
                   onChange={handleChange}
                   placeholder="Tuliskan pesan Anda..."
                   rows={5}
-                  className={errors.message ? 'border-destructive' : ''}
+                  className={`rounded-2xl border-[#FEF08A] focus:ring-[#EAB308] ${errors.message ? 'border-destructive' : ''}`}
                 />
-                {errors.message && (
-                  <p className="text-xs text-destructive">{errors.message}</p>
-                )}
+                {errors.message && <p className="text-xs text-destructive">{errors.message}</p>}
               </div>
 
               <Button
                 type="submit"
                 size="lg"
-                className="w-full rounded-full"
+                className="w-full rounded-full bg-[#EAB308] hover:bg-[#FDE047] text-white shadow-lg shadow-[#EAB308]/20 transition-all active:scale-95"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (
