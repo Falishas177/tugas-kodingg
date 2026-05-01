@@ -41,8 +41,8 @@ export default function AboutSection() {
               </div>
               
               <div className="absolute -bottom-6 -right-6 p-6 bg-white/90 backdrop-blur-md border border-[#FEF08A] rounded-3xl shadow-lg text-center">
-                <p className="font-display font-bold text-3xl text-[#EAB308]">2010</p>
-                <p className="text-xs font-bold text-[#422006]/60 uppercase tracking-tighter text-center">Tahun Lahir</p>
+                <p className="font-display font-bold text-3xl text-[#EAB308]">MAN 1</p>
+                <p className="text-xs font-bold text-[#422006]/60 uppercase tracking-tighter text-center">Banda Aceh</p>
               </div>
             </div>
           </motion.div>
